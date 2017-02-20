@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <ctime>
 #include <stdlib.h>
+#include <string>
+
 using namespace std;
 
 class saolei{
@@ -110,20 +112,21 @@ void saolei::generateLei(){
 
 void saolei::sznd(){
 	//cout << 1 << endl;
-	cout << "nd: " << endl;
-	int nd;
+	cout << "请输入难度值，1到3之间: " << endl;
+	string nd;
 	cin >> nd;
-	if(nd < 1) nd = 1;
-	if(nd > 3) nd = 3;
 
-	switch(nd){
-	case 1:
+	if(nd[0] < '1') nd = '1';
+	if(nd[0] > '3') nd = '3';
+
+	switch(nd[0]){
+	case '1':
 		gs = EASY;
 		break;
-	case 2:
+	case '2':
 		gs = MID;
 		break;
-	case 3:
+	case '3':
 		gs = HARD;
 		break;
 	}
