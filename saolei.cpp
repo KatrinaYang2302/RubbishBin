@@ -3,6 +3,8 @@
 #include <ctime>
 #include <stdlib.h>
 #include <string>
+#include <sstream>
+#include <cstring>
 
 using namespace std;
 
@@ -175,7 +177,7 @@ int saolei::wa(int row, int col){
 
 int saolei::fqz(int row, int col){
 	if(!inBound(row, col)) return FEIFACAOZUO;
-	if(wkl[row][col]) return FEIFACAOZUO;
+	if(wkl[row][col] || qizi[row][col]) return FEIFACAOZUO;
 	qzgs++;
 	qizi[row][col] = 1;
 	return MEIGUA;
@@ -251,7 +253,35 @@ void saolei::play(){
 		int h, l;
 		//scanf("%s%d%d", cmd, &h, &l);
 		//cout << cmd << h << l;
-		cin >> cmd >> h >> l;
+		string input;
+		while(!input.length()) getline(cin, input);
+		string Cmd, H, L;
+		int len = input.length();
+		int offset = 0;
+		while(offset < len && input[offset] != ' '){
+			Cmd += input[offset];
+			offset++;
+		}
+		offset ++;
+		if(offset >= len){
+			cout << "此操作非法" << endl;
+			continue;
+		}
+		while(offset < len && input[offset] != ' '){
+			H += input[offset];
+			offset++;
+		}
+		offset ++;
+		if(offset >= len){
+			cout << "此操作非法" << endl;
+			continue;
+		}
+		while(offset < len && input[offset] != ' '){
+			L += input[offset];
+			offset++;
+		}
+		cmd = Cmd[0];
+		h = atoi(H.c_str()), l = atoi(L.c_str());
 		int res = caozuo(cmd, h, l);
 		if(res == GUALE){
 			printLei();
