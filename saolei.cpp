@@ -268,5 +268,6 @@ int main() {
 	srand(time(NULL));
 	saolei *sl = new saolei();
 	sl->play();
+	delete sl;
 	return 0;
 }
